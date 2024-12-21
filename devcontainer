@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+action=$1
+tag=bingecraft-net/wavy-bacon/devcontainer
+if [ "$1" = "build" ] ; then
+  docker build -t $tag .
+elif [ "$1" = "run" ] ; then
+  docker run -it $tag
+else
+  echo "usage: $0 build|run"
+  exit 1
+fi
