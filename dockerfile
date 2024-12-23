@@ -13,3 +13,7 @@ RUN tar -C /opt -xzf nvim-linux64.tar.gz
 RUN rm nvim-linux64.tar.gz
 RUN ln -s /opt/nvim-linux64/bin/nvim /usr/local/bin
 RUN echo EDITOR=nvim >> /root/.zshrc
+
+COPY entrypoint.zsh /
+
+ENTRYPOINT /entrypoint.zsh
