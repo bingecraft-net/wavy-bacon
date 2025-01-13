@@ -1,0 +1,15 @@
+#!/usr/bin/env zsh
+
+id="$(git rev-parse --short HEAD)"
+name="$(stoml hetzner/config.toml server.name)"
+public_key="$(cat .ssh/id_ed25519.pub)"
+
+hcloud ssh-key create \
+  --name wavy-bacon \
+  --public-key "$public_key"
+
+hcloud server create \
+  --image docker-ce \
+  --name "$name-$id" \
+  --ssh-key wavy-bacon \
+  --type ccx13

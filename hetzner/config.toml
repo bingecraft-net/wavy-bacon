@@ -1,0 +1,7 @@
+[server]
+name = "wavy-bacon"
+type = "ccx13"
+
+[url]
+subdomain = "dev-wavy-bacon"
+zone = "LfVkNe23oUNFKhUb48c9wm"
