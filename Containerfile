@@ -10,9 +10,11 @@ RUN curl -sLO https://github.com/itzg/rcon-cli/releases/download/1.6.9/rcon-cli_
     rm rcon-cli_1.6.9_linux_amd64.tar.gz
 
 COPY ./bin/ /bin/
-COPY ./overrides/ /overrides/
 
 RUN useradd -m minecraft
+
+COPY ./overrides /home/minecraft/server
+
 RUN chown -R minecraft:minecraft /home/minecraft
 
 USER minecraft
