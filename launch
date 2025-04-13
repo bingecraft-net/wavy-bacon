@@ -4,11 +4,11 @@ set -e
 
 podman build -t wavy-bacon .
 
-mkdir -p backups/wavy-bacon
+mkdir -p backups
 if [ -f cidfile ] ; then
   podman start $(cat cidfile)
 else
-  podman run -dip 25565:25565 -v $(pwd)/backups/wavy-bacon:/home/minecraft/backups:U wavy-bacon > cidfile
+  podman run -dip 25565:25565 -v $(pwd)/backups:/home/minecraft/backups:U wavy-bacon > cidfile
 fi
 
 podman logs --follow $(cat cidfile)
