@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+
+set -e
+
+podman build -t wavy-bacon .
+id=$(podman run -dip 25565:25565 wavy-bacon)
+podman exec -it $id logtail

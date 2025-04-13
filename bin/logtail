@@ -1,3 +1,7 @@
 #!/usr/bin/env zsh
 
-tail --follow=name $HOME/server/logs/latest.log
+while [ ! -d $HOME/server/logs ] ; do
+  sleep 1
+done
+
+exec tail --follow=name $HOME/server/logs/latest.log
