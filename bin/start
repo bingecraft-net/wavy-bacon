@@ -1,7 +1,8 @@
 #!/usr/bin/env zsh
 
-awk -F= '!a[$1]++' /overrides/server.properties server.properties > server.properties.tmp
-mv server.properties.tmp server.properties
+if [ ! -f server.properties ] ; then
+  cp /overrides/server.properties ./
+fi
 
 if [ ! -d world ] ; then
   latest="$(ls -t $HOME/backups/*.tar.gz | head -1)"
