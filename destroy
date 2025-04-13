@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+
+podman stop $(cat cidfile)
+podman rm $(cat cidfile)
+rm cidfile
