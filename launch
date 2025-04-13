@@ -3,5 +3,7 @@
 set -e
 
 podman build -t wavy-bacon .
-id=$(podman run -dip 25565:25565 wavy-bacon)
-podman exec -it $id logtail
+
+mkdir -p backups/wavy-bacon
+podman run -dip 25565:25565 -v $(pwd)/backups/wavy-bacon:/home/minecraft/backups:U wavy-bacon > cidfile
+podman logs --follow $(cat cidfile)

@@ -16,10 +16,7 @@ RUN useradd -m minecraft
 RUN chown -R minecraft:minecraft /home/minecraft
 
 USER minecraft
-WORKDIR /home/minecraft
-
-RUN mkdir backups server
-WORKDIR server
+WORKDIR /home/minecraft/server
 
 RUN curl -sLO https://piston-data.mojang.com/v1/objects/e6ec2f64e6080b9b5d9b471b291c33cc7f509733/server.jar
 
