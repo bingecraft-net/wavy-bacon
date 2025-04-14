@@ -1,9 +1,9 @@
 #!/usr/bin/env zsh
 
-JAR="$1"
+executable="$@"
 
-if [ "$JAR" = "" ] ; then
-  echo expected required argument JAR
+if [ "$executable" = "" ] ; then
+  echo expected required argument \"executable\"
   exit 1
 fi
 
@@ -16,7 +16,7 @@ fi
 
 
 if [ ! -f eula.txt ] ; then
-  java -jar $JAR
+  eval "$executable"
   if grep "You need to agree to the EULA in order to run the server." logs/latest.log > /dev/null ; then
     sed -i 's/eula=false/eula=true/' eula.txt
   else
@@ -25,4 +25,4 @@ if [ ! -f eula.txt ] ; then
   fi
 fi
 
-exec java -jar $JAR
+exec sh -c "$executable"

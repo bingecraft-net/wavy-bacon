@@ -9,17 +9,22 @@ RUN curl -sLO https://github.com/itzg/rcon-cli/releases/download/1.6.9/rcon-cli_
     mv rcon-cli /bin/rcon-cli && \
     rm rcon-cli_1.6.9_linux_amd64.tar.gz
 
-COPY ./bin/ /bin/
-
-RUN useradd -m minecraft
-
-COPY ./overrides /home/minecraft/server
-
-RUN chown -R minecraft:minecraft /home/minecraft
-
-USER minecraft
-WORKDIR /home/minecraft/server
+WORKDIR /opt
 
 RUN curl -sLO https://api.papermc.io/v2/projects/paper/versions/1.21.5/builds/5/downloads/paper-1.21.5-5.jar
 
-CMD exec start paper-1.21.5-5.jar
+RUN useradd -m minecraft
+
+USER minecraft
+
+WORKDIR /home/minecraft
+
+COPY ./bin/ .local/bin/
+
+ENV PATH="$PATH:/home/minecraft/.local/bin"
+
+COPY --chown=minecraft ./overrides server
+
+WORKDIR server
+
+CMD exec start java -jar /opt/paper-1.21.5-5.jar
