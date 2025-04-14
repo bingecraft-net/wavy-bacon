@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+
+podman exec $(cat cidfile) backup
