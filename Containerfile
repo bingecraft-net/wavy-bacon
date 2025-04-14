@@ -20,6 +20,6 @@ RUN chown -R minecraft:minecraft /home/minecraft
 USER minecraft
 WORKDIR /home/minecraft/server
 
-RUN curl -sLO https://piston-data.mojang.com/v1/objects/e6ec2f64e6080b9b5d9b471b291c33cc7f509733/server.jar
+RUN curl -sLO https://api.papermc.io/v2/projects/paper/versions/1.21.5/builds/5/downloads/paper-1.21.5-5.jar
 
-CMD exec start
+CMD exec start paper-1.21.5-5.jar
