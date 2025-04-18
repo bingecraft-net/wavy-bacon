@@ -25,4 +25,4 @@ if [ ! -f eula.txt ] ; then
   fi
 fi
 
-exec sh -c "$executable"
+exec sh -c "exec $executable"
